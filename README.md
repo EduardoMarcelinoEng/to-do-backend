@@ -1,5 +1,5 @@
 # 1 - Execução do backend
--Instalar Nodejs v20 ou superior, MySQL e Redis no computador que for executar o backend;
+-Instalar Nodejs v20 ou superior, MySQL e Redis (executar Redis na porta 6379. Basta executar com configurações padrões que irá usar essa porta) no computador que for executar o backend;
 -Instalar a linha de comando sequelize-cli por meio do comando `npm install -g sequelize-cli`, sem as aspas;
 -Clonar repositório backend, branch master;
 -Na raiz do projeto backend, criar o arquivo .env de acordo com o exemplo .env.sample
