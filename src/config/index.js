@@ -1,36 +1,37 @@
 const env = "dev";
 const configs = {};
+require('dotenv').config();
 
 switch(env){
     case "dev":
-        configs.port = 8888;
+        configs.port = process.env.PORT;
         configs.database = {
-            "username": "root",
-            "password": "",
-            "database": "to_do",
-            "host": "127.0.0.1",
+            "username": process.env.DB_USERNAME,
+            "password": process.env.DB_PASSWORD,
+            "database": process.env.DB_NAME,
+            "host": process.env.DB_HOST,
             "dialect": "mysql",
             "timezone": "-03:00"
         };
     break;
     case "prod":
-        configs.port = 7000;
+        configs.port = process.env.PORT;
         configs.database = {
-            "username": "root",
-            "password": "",
-            "database": "to_do",
-            "host": "127.0.0.1",
+            "username": process.env.DB_USERNAME,
+            "password": process.env.DB_PASSWORD,
+            "database": process.env.DB_NAME,
+            "host": process.env.DB_HOST,
             "dialect": "mysql",
             "timezone": "-03:00"
         };
     break;
     case "test":
-        configs.port = 5000;
+        configs.port = process.env.PORT;
         configs.database = {
-            "username": "root",
-            "password": "",
-            "database": "to_do",
-            "host": "127.0.0.1",
+            "username": process.env.DB_USERNAME,
+            "password": process.env.DB_PASSWORD,
+            "database": process.env.DB_NAME,
+            "host": process.env.DB_HOST,
             "dialect": "mysql",
             "timezone": "-03:00"
         };
