@@ -5,7 +5,7 @@
 -Na raiz do projeto backend, criar o arquivo .env de acordo com o exemplo .env.sample
 -Executar na raiz do projeto backend o comando `npm install`, sem as aspas;
 -Executar na raiz do projeto backend o comando `npm run migrate`, sem as aspas;
--Executar npm start para iniciar o backend.
+-Executar `npm start` para iniciar o backend. Irá demorar alguns instantes, e será exibido uma mensagem com fundo verde informando que a aplicação foi iniciada na porta escolhida e o banco de dados foi conectado.
 
 # 2 - Execução dos testes unitários
 -Executar o comando `npm test`, sem as aspas, na raiz do projeto backend.
