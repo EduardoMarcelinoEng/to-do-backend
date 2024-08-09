@@ -4,6 +4,9 @@ const { User } = require(resolve("src", "app", "models"));
 const bcrypt = require('bcrypt');
 const moment = require("moment");
 const { createAccessToken, createRefreshToken, passwordCrypt } = require(resolve('src', 'Utils'));
+const { auth, refresh } = require(resolve("src", "middlewares"));
+const { insert:insertBlockList } = require(resolve('src', 'blocklist'));
+require('dotenv').config();
 
 module.exports = app => {
     app.post(routerBase, async (req, res)=>{
@@ -75,4 +78,44 @@ module.exports = app => {
         });
   
     });
+
+    app.post(`${routerBase}/refresh`, refresh, async (req, res)=>{
+      try {
+
+        const { user } = res.locals.auth_data;
+
+        delete user.dataValues.password;
+      
+        return res.status(200).json({
+          user: user.dataValues,
+          token: createAccessToken({
+            data: {
+              userId: user.id
+            },
+            privateKey: process.env.PRIVATE_KEY,
+            options: { expiresIn: '15m' }
+          }),
+          refreshToken: await createRefreshToken({
+            data: {
+              userId: user.id
+            },
+            expiresIn: moment().add(1, 'h').unix()
+          })
+        });
+      
+      } catch (error) {
+        return res.status(500).json(error.message);
+      }
+    });
+
+  app.post(`${routerBase}/logout`, auth, refresh, async (req, res)=>{
+    try {
+    await insertBlockList(req.headers.auth);
+    
+    return res.status(200).json('Usuário deslogado!');
+    } catch (error) {
+    return res.status(500).json(error.message);
+    }
+      
+  });
 }
