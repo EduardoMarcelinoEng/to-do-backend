@@ -6,6 +6,7 @@ const { env, port } = require(resolve("src", "config"));
 const consign = require('consign');
 const { existsSync } = require("fs");
 const { sequelize } = require(resolve("src", "app", "models"));
+require(resolve("src", "cron"));
 
 app.use(express.static("dist/to-do-frontend/browser"));
 
